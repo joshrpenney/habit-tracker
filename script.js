@@ -1,101 +1,127 @@
-let habits = JSON.parse(localStorage.getItem("habits")) || [];
+let habits =
+JSON.parse(localStorage.getItem("habits")) || [];
 
-function saveHabits() {
-    localStorage.setItem("habits", JSON.stringify(habits));
+function save(){
+localStorage.setItem(
+"habits",
+JSON.stringify(habits)
+);
 }
 
-function addHabit() {
+function addHabit(){
 
-    const input = document.getElementById("habit-input");
+const input =
+document.getElementById("habitInput");
 
-    if (input.value.trim() === "") return;
+if(!input.value.trim()) return;
 
-    habits.push({
-        name: input.value,
-        completed: false
-    });
+habits.push({
+name:input.value,
+done:false
+});
 
-    input.value = "";
+input.value="";
 
-    saveHabits();
-    renderHabits();
+save();
+render();
 }
 
-function toggleHabit(index) {
+function toggleHabit(index){
 
-    habits[index].completed =
-        !habits[index].completed;
+habits[index].done =
+!habits[index].done;
 
-    saveHabits();
-    renderHabits();
+save();
+render();
 }
 
-function renderHabits() {
+function deleteHabit(index){
 
-    const list =
-        document.getElementById("habit-list");
+habits.splice(index,1);
 
-    list.innerHTML = "";
-
-    habits.forEach((habit, index) => {
-
-        const div = document.createElement("div");
-
-        div.className = "habit";
-
-        div.innerHTML = `
-            <span>${habit.name}</span>
-
-            <input
-                type="checkbox"
-                ${habit.completed ? "checked" : ""}
-                onchange="toggleHabit(${index})"
-            >
-        `;
-
-        list.appendChild(div);
-    });
-
-    updateStats();
+save();
+render();
 }
 
-function updateStats() {
+function render(){
 
-    let completed =
-        habits.filter(h => h.completed).length;
+const list =
+document.getElementById("habitList");
 
-    let total = habits.length;
+list.innerHTML="";
 
-    let percent =
-        total === 0
-        ? 0
-        : Math.round((completed / total) * 100);
+habits.forEach((habit,index)=>{
 
-    document.getElementById(
-        "progress-fill"
-    ).style.width = percent + "%";
+list.innerHTML += `
+<div class="habit">
 
-    document.getElementById(
-        "progress-text"
-    ).innerText = percent + "%";
+<span>${habit.name}</span>
 
-    let xp = completed * 10;
+<div>
 
-    document.getElementById(
-        "xp"
-    ).innerText = xp + " XP";
+<input
+type="checkbox"
+${habit.done ? "checked" : ""}
+onchange="toggleHabit(${index})">
 
-    document.getElementById(
-        "level"
-    ).innerText =
-        Math.floor(xp / 100) + 1;
+<button
+onclick="deleteHabit(${index})">
+❌
+</button>
 
-    document.getElementById(
-        "streak"
-    ).innerText =
-        completed === total && total > 0
-        ? "🔥 1 Day"
-        : "0 Days";
+</div>
+
+</div>
+`;
+});
+
+updateStats();
 }
 
-renderHabits();
+function updateStats(){
+
+let completed =
+habits.filter(h=>h.done).length;
+
+let total =
+habits.length;
+
+let percent =
+total===0
+?0
+:Math.round((completed/total)*100);
+
+document.getElementById(
+"progress-bar"
+).style.width =
+percent+"%";
+
+document.getElementById(
+"progress-text"
+).innerText =
+percent+"% Complete";
+
+let xp = completed*10;
+
+let level =
+Math.floor(xp/100)+1;
+
+document.getElementById(
+"xp"
+).innerText =
+xp+" XP";
+
+document.getElementById(
+"level"
+).innerText =
+"Level "+level;
+
+document.getElementById(
+"streak"
+).innerText =
+completed===total && total>0
+? "🔥 1 Day Streak"
+: "🔥 0 Day Streak";
+}
+
+render();
