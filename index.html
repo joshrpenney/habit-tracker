@@ -1,54 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Habit Tracker</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🔥 Habit Tracker</h1>
+<h1>🔥 Habit Tracker</h1>
 
-    <div class="stats">
-        <div class="card">
-            <h3>Current Streak</h3>
-            <p id="streak">0 Days</p>
-        </div>
+<div class="top-card">
+    <h2 id="streak">0 Day Streak</h2>
+    <p id="xp">0 XP</p>
+    <p id="level">Level 1</p>
+</div>
 
-        <div class="card">
-            <h3>XP</h3>
-            <p id="xp">0 XP</p>
-        </div>
+<div class="progress-container">
+    <div id="progress-bar"></div>
+</div>
 
-        <div class="card">
-            <h3>Level</h3>
-            <p id="level">1</p>
-        </div>
-    </div>
+<p id="progress-text">0%</p>
 
-    <div class="progress-section">
-        <h2>Today's Progress</h2>
+<div class="add-box">
+    <input id="habitInput" placeholder="New habit...">
+    <button onclick="addHabit()">Add</button>
+</div>
 
-        <div class="progress-bar">
-            <div id="progress-fill"></div>
-        </div>
-
-        <p id="progress-text">0%</p>
-    </div>
-
-    <div class="add-habit">
-        <input
-            type="text"
-            id="habit-input"
-            placeholder="Add a new habit..."
-        >
-        <button onclick="addHabit()">Add</button>
-    </div>
-
-    <div id="habit-list"></div>
+<div id="habitList"></div>
 
 </div>
 
