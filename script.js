@@ -16,8 +16,10 @@ document.getElementById("habitInput");
 if(!input.value.trim()) return;
 
 habits.push({
-name:input.value,
-done:false
+name: input.value,
+done: false,
+streak: 0,
+longest: 0
 });
 
 input.value="";
@@ -55,7 +57,11 @@ habits.forEach((habit,index)=>{
 list.innerHTML += `
 <div class="habit">
 
-<span>${habit.name}</span>
+<div>
+    <strong>${habit.name}</strong>
+    <br>
+    🔥 ${habit.streak} day streak
+</div>
 
 <div>
 
