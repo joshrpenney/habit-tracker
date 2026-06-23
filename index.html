@@ -1,38 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Habit Tracker</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>🔥 Habit Tracker</h1>
+    <h1>🔥 Habit Tracker</h1>
 
-<div class="top-card">
-    <h2 id="streak">0 Day Streak</h2>
-    <p id="xp">0 XP</p>
-    <p id="longestStreak">
-Longest Streak: 0 Days
-</p>
-</div>
+    <div class="top-card">
 
-<div class="progress-container">
-    <div id="progress-bar"></div>
-</div>
+        <h2 id="streak">🔥 0 Day Streak</h2>
 
-<p id="progress-text">0%</p>
+        <p id="xp">0 XP</p>
 
-<div class="add-box">
-    <input id="habitInput" placeholder="New habit...">
-    <button onclick="addHabit()">Add</button>
-</div>
+        <p id="level">Level 1</p>
 
-<div id="habitList"></div>
+        <p id="longestStreak">
+            🏆 Longest Streak: 0 Days
+        </p>
+
+    </div>
+
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <p id="progress-text">0% Complete</p>
+
+    <div class="add-box">
+
+        <input
+            id="habitInput"
+            type="text"
+            placeholder="New habit..."
+        >
+
+        <button onclick="addHabit()">
+            Add
+        </button>
+
+    </div>
+
+    <div id="habitList"></div>
 
 </div>
 
