@@ -1,133 +1,234 @@
-let habits =
-JSON.parse(localStorage.getItem("habits")) || [];
+// =====================
+// HABIT TRACKER V2
+// =====================
 
-function save(){
-localStorage.setItem(
-"habits",
-JSON.stringify(habits)
-);
+let data = JSON.parse(
+    localStorage.getItem("habitData")
+) || {
+    habits: [],
+    accountStreak: 0,
+    longestAccountStreak: 0,
+    totalXP: 0
+};
+
+function save() {
+    localStorage.setItem(
+        "habitData",
+        JSON.stringify(data)
+    );
 }
 
-function addHabit(){
+function addHabit() {
 
-const input =
-document.getElementById("habitInput");
+    const input =
+        document.getElementById("habitInput");
 
-if(!input.value.trim()) return;
+    const name = input.value.trim();
 
-habits.push({
-name: input.value,
-done: false,
-streak: 0,
-longest: 0
-});
+    if (!name) return;
 
-input.value="";
+    data.habits.push({
+        name: name,
+        done: false,
+        streak: 0,
+        longest: 0,
+        completions: 0
+    });
 
-save();
-render();
+    input.value = "";
+
+    save();
+    render();
 }
 
-function toggleHabit(index){
+function toggleHabit(index) {
 
-habits[index].done =
-!habits[index].done;
+    const habit =
+        data.habits[index];
 
-save();
-render();
+    habit.done = !habit.done;
+
+    if (habit.done) {
+
+        habit.completions++;
+
+        habit.streak++;
+
+        if (
+            habit.streak >
+            habit.longest
+        ) {
+            habit.longest =
+                habit.streak;
+        }
+
+        data.totalXP += 10;
+
+    } else {
+
+        if (habit.streak > 0) {
+            habit.streak--;
+        }
+
+        data.totalXP -= 10;
+
+        if (data.totalXP < 0) {
+            data.totalXP = 0;
+        }
+    }
+
+    checkAccountStreak();
+
+    save();
+    render();
 }
 
-function deleteHabit(index){
+function deleteHabit(index) {
 
-habits.splice(index,1);
+    data.habits.splice(index, 1);
 
-save();
-render();
+    save();
+    render();
 }
 
-function render(){
+function checkAccountStreak() {
 
-const list =
-document.getElementById("habitList");
+    if (data.habits.length === 0) {
+        return;
+    }
 
-list.innerHTML="";
+    const allComplete =
+        data.habits.every(
+            habit => habit.done
+        );
 
-habits.forEach((habit,index)=>{
+    if (allComplete) {
 
-list.innerHTML += `
-<div class="habit">
+        data.accountStreak++;
 
-<div>
-    <strong>${habit.name}</strong>
-    <br>
-    🔥 ${habit.streak} day streak
-</div>
+        if (
+            data.accountStreak >
+            data.longestAccountStreak
+        ) {
+            data.longestAccountStreak =
+                data.accountStreak;
+        }
 
-<div>
-
-<input
-type="checkbox"
-${habit.done ? "checked" : ""}
-onchange="toggleHabit(${index})">
-
-<button
-onclick="deleteHabit(${index})">
-❌
-</button>
-
-</div>
-
-</div>
-`;
-});
-
-updateStats();
+    }
 }
 
-function updateStats(){
+function render() {
 
-let completed =
-habits.filter(h=>h.done).length;
+    const list =
+        document.getElementById("habitList");
 
-let total =
-habits.length;
+    list.innerHTML = "";
 
-let percent =
-total===0
-?0
-:Math.round((completed/total)*100);
+    data.habits.forEach(
+        (habit, index) => {
 
-document.getElementById(
-"progress-bar"
-).style.width =
-percent+"%";
+        list.innerHTML += `
+        <div class="habit">
 
-document.getElementById(
-"progress-text"
-).innerText =
-percent+"% Complete";
+            <div>
 
-let xp = completed*10;
+                <strong>
+                    ${habit.name}
+                </strong>
 
-let level =
-Math.floor(xp/100)+1;
+                <br>
 
-document.getElementById(
-"xp"
-).innerText =
-xp+" XP";
+                🔥 ${habit.streak} day streak
 
-document.getElementById(
-"level"
-).innerText =
-"Level "+level;
+                <br>
 
-document.getElementById(
-"streak"
-).innerText =
-completed===total && total>0
-? "🔥 1 Day Streak"
-: "🔥 0 Day Streak";
+                🏆 Best: ${habit.longest}
+
+            </div>
+
+            <div>
+
+                <input
+                    type="checkbox"
+                    ${habit.done ? "checked" : ""}
+                    onchange="toggleHabit(${index})"
+                >
+
+                <button
+                    onclick="deleteHabit(${index})">
+                    ❌
+                </button>
+
+            </div>
+
+        </div>
+        `;
+    });
+
+    updateStats();
+}
+
+function updateStats() {
+
+    const completed =
+        data.habits.filter(
+            h => h.done
+        ).length;
+
+    const total =
+        data.habits.length;
+
+    const percent =
+        total === 0
+        ? 0
+        : Math.round(
+            (completed / total) * 100
+        );
+
+    document.getElementById(
+        "progress-bar"
+    ).style.width =
+        percent + "%";
+
+    document.getElementById(
+        "progress-text"
+    ).innerText =
+        percent + "% Complete";
+
+    const level =
+        Math.floor(
+            data.totalXP / 100
+        ) + 1;
+
+    document.getElementById(
+        "xp"
+    ).innerText =
+        data.totalXP + " XP";
+
+    document.getElementById(
+        "level"
+    ).innerText =
+        "Level " + level;
+
+    document.getElementById(
+        "streak"
+    ).innerText =
+        "🔥 " +
+        data.accountStreak +
+        " Day Streak";
+
+    const longestElement =
+        document.getElementById(
+            "longestStreak"
+        );
+
+    if (longestElement) {
+
+        longestElement.innerText =
+            "🏆 Longest: " +
+            data.longestAccountStreak +
+            " Days";
+    }
 }
 
 render();
