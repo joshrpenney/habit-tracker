@@ -1,75 +1,74 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-    margin: 0;
-    padding: 20px;
+body{
+background:#121212;
+color:white;
+font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
+.container{
+max-width:600px;
+margin:auto;
 }
 
-h1 {
-    text-align: center;
+h1{
+text-align:center;
 }
 
-.stats {
-    display: flex;
-    gap: 15px;
-    margin: 20px 0;
+.top-card{
+background:#1e1e1e;
+padding:20px;
+border-radius:16px;
+text-align:center;
+margin-bottom:20px;
 }
 
-.card {
-    flex: 1;
-    background: #1e1e1e;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
+.progress-container{
+background:#333;
+height:20px;
+border-radius:20px;
+overflow:hidden;
 }
 
-.add-habit {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
+#progress-bar{
+height:100%;
+width:0%;
+background:#58cc02;
+transition:0.3s;
 }
 
-input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
+#progress-text{
+text-align:center;
 }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    background: #4caf50;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
+.add-box{
+display:flex;
+gap:10px;
+margin:20px 0;
 }
 
-.habit {
-    background: #1e1e1e;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
+input{
+flex:1;
+padding:12px;
+border:none;
+border-radius:10px;
 }
 
-.progress-bar {
-    height: 20px;
-    background: #333;
-    border-radius: 20px;
-    overflow: hidden;
+button{
+background:#58cc02;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:10px;
+font-weight:bold;
 }
 
-#progress-fill {
-    width: 0%;
-    height: 100%;
-    background: #4caf50;
-    transition: 0.3s;
+.habit{
+background:#1e1e1e;
+padding:15px;
+border-radius:12px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
