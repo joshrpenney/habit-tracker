@@ -2,72 +2,138 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Habit Tracker</title>
+
+<link rel="stylesheet"
+href="style.css">
+
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-    <div class="header">
+<header>
 
-    <div class="header">
+<div>
 
-    <div>
-        <h1>🔥 Habit Tracker</h1>
-        <p class="subtitle">
-            Build yourself every day.
-        </p>
-    </div>
+<h1>🔥 Habit Tracker</h1>
 
-    <a href="settings.html" class="settingsButton">
-        ⚙️
-    </a>
+<p class="subtitle">
+Build yourself every day.
+</p>
 
 </div>
 
-    <div class="top-card">
+<a href="settings.html"
+class="settings">
 
-        <h2 id="streak">🔥 0 Day Streak</h2>
+⚙️
 
-        <p id="xp">0 XP</p>
+</a>
 
-        <p id="level">Level 1</p>
+</header>
 
-        <p id="longestStreak">
-            🏆 Longest Streak: 0 Days
-        </p>
+<section class="hero">
 
-    </div>
+<div class="xp-ring">
 
-    <div class="progress-container">
-        <div id="progress-bar"></div>
-    </div>
+<div class="xp-inner">
 
-    <p id="progress-text">0% Complete</p>
+<h2 id="level">
 
-    <div class="add-box">
+Level 1
 
-        <input
-            id="habitInput"
-            type="text"
-            placeholder="New habit..."
-        >
+</h2>
 
-        <button onclick="addHabit()">
-            Add
-        </button>
+<p id="xp">
 
-    </div>
+0 XP
 
-    <div id="habitList"></div>
+</p>
+
+</div>
+
+</div>
+
+<div class="streak-card">
+
+<h2 id="streak">
+
+🔥 0 Day Streak
+
+</h2>
+
+<p id="longest">
+
+🏆 Longest: 0 Days
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>
+
+Today's Habits
+
+</h2>
+
+<div id="habitList">
+
+</div>
+
+</section>
+
+<section>
+
+<h2>
+
+Today's Tasks
+
+</h2>
+
+<div id="taskList">
+
+</div>
+
+</section>
+
+<section>
+
+<h2>
+
+Weekly Goals
+
+</h2>
+
+<div id="goalList">
+
+</div>
+
+</section>
+
+<button
+class="floating-add"
+onclick="location.href='settings.html'">
+
++
+
+</button>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
