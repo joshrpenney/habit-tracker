@@ -132,9 +132,7 @@ function render() {
 
             <div>
 
-                <strong>
-                    ${habit.name}
-                </strong>
+                <strong>${habit.emoji || "✅"} ${habit.name}</strong>
 
                 <br>
 
