@@ -92,3 +92,26 @@ text-decoration:none;
 color:#58cc02;
 font-weight:bold;
 }
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    margin-top:-10px;
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.settings-button{
+    font-size:34px;
+    text-decoration:none;
+    color:white;
+    transition:0.2s;
+}
+
+.settings-button:hover{
+    transform:rotate(25deg);
+}
