@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>⚙️ Settings</h1>
+
+    <a href="index.html" class="backButton">← Back to Habits</a>
+
+    <div class="top-card">
+
+        <h2>Your Habits</h2>
+
+        <div id="settingsHabitList"></div>
+
+    </div>
+
+    <div class="top-card">
+
+        <h2>Add New Habit</h2>
+
+        <input
+            id="newEmoji"
+            placeholder="Emoji (🏋)"
+            maxlength="2">
+
+        <br><br>
+
+        <input
+            id="newHabit"
+            placeholder="Habit name">
+
+        <br><br>
+
+        <input
+            id="newXP"
+            type="number"
+            placeholder="XP Reward">
+
+        <br><br>
+
+        <button onclick="addHabitFromSettings()">
+            Save Habit
+        </button>
+
+    </div>
+
+</div>
+
+<script src="settings.js"></script>
+
+</body>
+
+</html>
